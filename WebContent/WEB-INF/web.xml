@@ -10,6 +10,33 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
+  <!-- 주석문 형식 -->
+  <!-- === 서블릿 (Servlet)등록하기 === -->
+  <!-- 왓스에 기억해준다. (submit 하였을 때) -->
+  <!-- 확장자 .xml, .java는 /MyMVC (컨텍스트명)을 작성하지 않는다.  -->
+  
+  <!-- =========================== 01 GET =========================== -->
+  
+  <servlet>
+  	<servlet-name>getMethodTest1.jsp</servlet-name>
+  	<servlet-class>begin.chap02.GetMethodTest1</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>getMethodTest1.jsp</servlet-name>
+  	<!-- <url-pattern>/</url-pattern> ==> / 에는 /MyMVC가 생략되어있다. -->
+  	<url-pattern>/getMethodTest1.do</url-pattern>
+  </servlet-mapping>
   
   
 </web-app>
+
+
+
+
+
+
+
+
+
+
