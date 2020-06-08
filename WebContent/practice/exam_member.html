@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>시험연습</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
 <style type="text/css">
 
 	span#emailDuplicateCheck {
@@ -26,6 +32,30 @@
 		var bIsClickEmailCheck = false; // email 중복검사를 클릭 했는지 알아보기위한 것.
 		
 		// email 중복검사 버튼 클릭 --------------------------------------------------
+		$("#emailDuplicateCheck").click(function(){  
+			bIsClickEmailCheck = true;
+			
+			$.ajax({ 
+				url: "/MyMVC/member/memberRegister.up",
+				data: {"email":$("#email").val()},
+				dataType: "json",
+				success: function(json){
+					if(json.isUse) { // json.isUse ==> true (중복이 되지 않은 email이므로 사용 가능) 
+						$("#emailResult").html("사용가능합니다.").css("color","navy");
+					}
+					else { // json.isUse ==> false (중복되어  email로 사용 불가능)
+						$("#emailResult").html($("#email").val() +" 은 중복되어 사용 불가능합니다.").css("color","red");
+						$("#email").val(""); // 입력된 email 지우기
+					}
+				},
+				error: function(request, status, error){
+					alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+				}
+			});
+			
+			
+			
+		}); // end of $("#emailDuplicateCheck").click(function()----------------
 		
 		
 		
@@ -40,32 +70,20 @@
 			}
 			
 			else{
-			
-				// 유효성 검사 생략. 입력대상값이 모두 입력되었다는 전제 하에 진행.
 				
-				var employee = {"ename":$("#ename").val() 
-							   ,"jik":$("#jik").val() 
-							   ,"tel":$("#tel").val() 
-							   ,"email":$("#email").val()
-							   ,"birthday":$("#birthday").val()};
+				var member = {"ename":$("#ename").val() 
+							 ,"email":$("#email").val()};
 				
-				var strEmployee = JSON.stringify(employee);
-				// JSON.stringify(자바스크립트객체); 메소드는 자바스크립트객체를 JSON 문자열로 변환해주는 것이다.
-				
-				// 그 반대는 JSON.parse(text); 로써 JSON 형식으로 되어진 문자열을 자바스크립트 객체로 변환해주는 것이다.
-				// 조심할것은 text는 반드시 JSON 형식으로 되어진 문자열이어야 한다.
-				
-				// console.log("확인용 strEmployee => " + strEmployee);
-				// 확인용 strEmployee => {"ename":"이순신","jik":"대리","tel":"01012345678","email":"leess@gmail.com","birthday":"19941019"}
-				
+				var strMember = JSON.stringify(member);
+		
 				
 				$.ajax({ 
-					url: "<%= ctxPath%>/ajaxstudy/gsontestEmpWrite.up",
+					url: "/MyMVC/practice/examCheckEmail.jsp",
 					type: "post",
-					data: {"employee":strEmployee}, // JSON 형식의 문자열을 보낸다 
+					data: {"member":strMember}, // JSON 형식의 문자열을 보낸다 
 					success: function(){ 
-						func_empList(); // 모든 사원 정보 출력해주는 함수
-						document.empFrm.reset(); // 입력한 신규사원 정보 초기화 시키기
+
+						document.memFrm.reset(); // 입력한 신규사원 정보 초기화 시키기
 						$("#emailResult").empty();
 					},
 					error: function(request, status, error){
