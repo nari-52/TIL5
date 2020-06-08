@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>시험연습</title>
+<style type="text/css">
+
+	span#emailDuplicateCheck {
+		display: inline-block;
+		margin: 0 0 0 5px;
+		padding: 2px 0;
+		width: 120px;
+		border-radius: 5px;
+		cursor: pointer;
+		color: #fff;
+		background-color: #ff0066;
+		text-align: center;
+	}
+	
+</style>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){ 
+		
+		var bIsClickEmailCheck = false; // email 중복검사를 클릭 했는지 알아보기위한 것.
+		
+		// email 중복검사 버튼 클릭 --------------------------------------------------
+		
+		
+		
+		
+		// 입력 버튼 클릭 ---------------------------------------------------------
+		
+		$("#btnmemSubmit").click(function(){ 
+			
+			if(!bIsClickEmailCheck) {
+				alert("email 중복검사를 하세요!!");
+				return; // 종료
+			}
+			
+			else{
+			
+				// 유효성 검사 생략. 입력대상값이 모두 입력되었다는 전제 하에 진행.
+				
+				var employee = {"ename":$("#ename").val() 
+							   ,"jik":$("#jik").val() 
+							   ,"tel":$("#tel").val() 
+							   ,"email":$("#email").val()
+							   ,"birthday":$("#birthday").val()};
+				
+				var strEmployee = JSON.stringify(employee);
+				// JSON.stringify(자바스크립트객체); 메소드는 자바스크립트객체를 JSON 문자열로 변환해주는 것이다.
+				
+				// 그 반대는 JSON.parse(text); 로써 JSON 형식으로 되어진 문자열을 자바스크립트 객체로 변환해주는 것이다.
+				// 조심할것은 text는 반드시 JSON 형식으로 되어진 문자열이어야 한다.
+				
+				// console.log("확인용 strEmployee => " + strEmployee);
+				// 확인용 strEmployee => {"ename":"이순신","jik":"대리","tel":"01012345678","email":"leess@gmail.com","birthday":"19941019"}
+				
+				
+				$.ajax({ 
+					url: "<%= ctxPath%>/ajaxstudy/gsontestEmpWrite.up",
+					type: "post",
+					data: {"employee":strEmployee}, // JSON 형식의 문자열을 보낸다 
+					success: function(){ 
+						func_empList(); // 모든 사원 정보 출력해주는 함수
+						document.empFrm.reset(); // 입력한 신규사원 정보 초기화 시키기
+						$("#emailResult").empty();
+					},
+					error: function(request, status, error){
+						alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+					}
+				});
+				
+			} // end of if ~ else --------------------------------------
+		}); // end of $("#btnEmpSubmit").click()--------------------------------------
+		
+		
+	});
+
+</script>
+
+</head>
+<body>
+
+
+	<div>
+		<form name="memFrm">
+    		<table id="memTbl">
+    			<tr>
+    				<th colspan="2">신규사원 정보입력(시험연습)</th>
+    			</tr>
+    			<tr>
+    				<td>이름</td>
+    				<td><input type="text" id="ename"/></td>
+    			</tr>
+    			<tr>
+    				<td>email</td>
+    				<td style="width:80%;">
+    					<input type="email" id="email"/>
+    					<span id="emailDuplicateCheck">email중복검사</span>
+    					<br/><span id="emailResult"></span>
+    				</td>
+    			</tr>
+    			
+    			<tr>
+    				<td colspan="2">
+    					<button type="button" id="btnmemSubmit">입력</button>
+    					<button type="reset">취소</button>
+    				</td>
+    			</tr>
+    		</table>
+    	</form>
+	</div>
+
+</body>
+</html>
