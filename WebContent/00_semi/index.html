@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.do</title>
+
+<style type="text/css">
+
+	body {
+		border: solid 3px black;
+		min-width: 320px;
+	}
+
+	div#container {
+		/* border: solid 1px yellow; */
+		width: 100%;
+		margin: 0 auto;
+	}
+	
+	header {
+		/* border: solid 1px red; */
+		height: 120px;
+		background-color: #f6f5ef;
+		border-bottom: 1px solid #e5e5e5
+	} 
+	div#header_1 {
+		/* border: solid 1px red; */
+		float: left;
+		width: 20%;
+		height: 120px;
+		margin: 0 auto;
+	}
+	
+	img#logo {
+		margin-top: 7%;
+		margin-left: 10%
+	}
+	
+	div#header_2 {
+		/* border: solid 1px blue; */
+		float: right;
+		width: 70%;
+		height: 120px;
+		margin: 0 auto;
+	}
+	
+	nav {
+		text-align: right;
+	}
+	
+	.nav_first {
+		font-size: 11pt;
+	}
+	
+	ul, li {
+	    list-style: none;
+		display: inline-block;
+		margin-right: 50px;
+		color: #555;
+	}
+	
+	a {
+		text-decoration: none;
+	}
+	
+	/* ---------------------------- 헤더 끝 -------------------------- */
+	
+	/* 신제품 */
+	
+	div#section_new_product {
+		/* border: solid 1px skyblue; */
+		height: 646px;
+		background-color: #f4e7c7;
+		/* background-image: url('images/1_newmenu.png');
+		background-repeat : no-repeat;
+		background-size : cover; */
+
+	}
+	
+	.img_newmenu {
+		margin-left: 2%;
+	}
+	
+	/* 공지사항 */
+
+	
+	div#section_notice {
+		border-top: solid 2px white;	
+		border-bottom: solid 2px white;
+		height: 80px;
+		background-color: black;
+		color: white;
+	}
+	
+	table#section_notice_table {
+		margin: 0 auto;
+		align-content: center;
+		text-align: center;
+		vertical-align: middle;
+		height: 80px;
+		
+	}
+	
+	td#section_notice_title {
+		font-size: 14pt;
+		padding-right: 50px;
+	}
+	
+	table#section_notice_table > tr > td {
+		vertical-align: middle;
+	}
+	
+	img#section_notice_plus {
+		border-radius: 50%;
+		margin-left: 50px;
+	}
+	
+	/* 리워드 */
+	
+	div#section_reward {
+		/* border: solid 1px orange; */
+		height: 335px;
+		background-color: white;
+		background-image: url('images/reward_texbg.jpg');
+		padding: 0;
+		color : white;
+		
+	}
+	
+/* 	.img {
+		position: relative;
+		top: 0;
+		left: 0;
+	}
+	 */
+	
+	/* 추천메뉴 */
+	
+	div#section_recommended_menu {
+		/* border: solid 1px purple; */
+		height: 573px;
+		background-color: skyblue;
+	}
+	
+	div#section_map {
+		/* border: solid 1px red; */
+		height: 710px;
+		background-color: #ffe6ff;
+	}
+	/* ---------------------------- 바디 끝 -------------------------- */
+	
+	footer {
+		height: 350px;
+		background-color: black;
+		color: white;
+	}
+	
+	div#footer_botton {
+		text-align: center;
+		color: #555;
+	}
+	
+	/* ---------------------------- 푸터 끝 -------------------------- */
+	
+
+</style>
+
+</head>
+<body>
+
+	<div id="container">
+		<header>
+			<div id="header_1">
+				<a href="index.html" >
+					<img id="logo" src="images/starbucslogo.png" width="75px" height="75px"/> 
+				</a>
+			</div>
+			<div id="header_2">
+				<nav class="nav_first">
+					<ul>
+						<li><a>SIGN IN</a></li>
+						<li><a>SHOPPING BASKET</a></li>
+						<li><a>MY STARBUCS</a></li>
+						<li><a>MANAGER PAGE</a></li>
+					</ul>
+				</nav>
+				<nav class="nav_second">
+					<ul>
+						<li><a>MENU</a></li>
+						<li><a href="notice_list.html">NOTICE</a></li>
+						<li><a>QNA</a></li>
+					</ul>
+				</nav>
+		
+
+			</div>
+		
+		</header>
+		
+		<!-- -------------------------------- 헤더 끝 ---------------------------------- -->
+		
+		<section>
+			<div id="section_new_product">
+				<img class="img_newmenu" src="images/1_newmenu.png" width="95%" height="646px" /> 	
+			</div>
+			
+			<div id="section_notice">
+				<table id="section_notice_table">
+					<tr>
+						<td id="section_notice_title">공지사항 </td>
+						<td><a>SSG PAY 시스템 점검 안내</a></td>
+						<td><a href="notice_list.html"><img id="section_notice_plus" src="images/notice_plus.png" width="30px" height="30px" /></a></td>
+					</tr>
+				</table>
+			</div>
+			
+			<section>
+			<div id="section_reward">
+				<img class="img" src="images/my_starbucks_rewards.jpg" width="45%" height="335px"/>
+				
+			</div>
+			</section>
+			
+			<div id="section_recommended_menu">
+			추천메뉴
+			</div>
+			
+			<div id="section_map">
+			지도
+			</div>
+		
+		</section>
+		
+		<!-- --------------------------------- 바디 끝 ---------------------------------- -->
+		
+		<footer>
+			<div>광고</div>
+			<br/><br/><br/><br/><br/><br/><br/>
+			<div id="footer_botton">
+				<ul>
+					<li>사업자등록번호 : 201-81-21515</li>
+					<li>주)스타벅스커피 코리아 대표이사 : 송 데이비드 호섭</li>
+					<li>TEL : 1522-3232</li>
+					<li>개인정보 책임자 : 장석현 기재</li>
+				</ul>
+				<br/><br/>
+				<span>&copy; 2020 Starbucks Coffee Company. All Rights Reserved. </span>
+			</div>
+		</footer>
+	
+	</div>
+
+</body>
+</html>
