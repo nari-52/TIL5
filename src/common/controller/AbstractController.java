@@ -38,10 +38,6 @@ public abstract class AbstractController implements InterCommand {
 	public void setViewPage(String viewPage) {
 		this.viewPage = viewPage;
 	}
-	
-	
-	
-	
-	
+
 
 }
