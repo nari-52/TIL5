@@ -277,10 +277,6 @@ public class AjaxDAO implements InterAjaxDAO {
 		return empvo;				
 		
 	}
-	
-	
-	
-	
 
 }
 
