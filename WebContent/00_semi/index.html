@@ -18,7 +18,7 @@
 	}
 	
 	header {
-		/* border: solid 1px red; */
+		/* border: solid 1px red; */	
 		height: 120px;
 		background-color: #f6f5ef;
 		border-bottom: 1px solid #e5e5e5
@@ -33,15 +33,16 @@
 	
 	img#logo {
 		margin-top: 7%;
-		margin-left: 10%
+		margin-left: 80%;
 	}
 	
 	div#header_2 {
 		/* border: solid 1px blue; */
 		float: right;
-		width: 70%;
+		width: 50%;
 		height: 120px;
 		margin: 0 auto;
+		margin-right: 15%;
 	}
 	
 	nav {
@@ -67,19 +68,52 @@
 	
 	/* 신제품 */
 	
+	
 	div#section_new_product {
 		/* border: solid 1px skyblue; */
 		height: 646px;
 		background-color: #f4e7c7;
-		/* background-image: url('images/1_newmenu.png');
+		background-image: url('images/section_new_product_background.jpg');
 		background-repeat : no-repeat;
-		background-size : cover; */
-
+		background-size : cover; 
 	}
 	
-	.img_newmenu {
-		margin-left: 2%;
+	div#section_new_product_slogan {
+		border: solid 1px red;
 	}
+	
+	.section_new_product_emblem {
+		display: inline-block;
+		position: absolute; 
+		top: 20%; 
+		left: 15%; 
+		width: 255px; 
+		height: 269px; 
+		background-image: url('images/section_new_product_emblem.png'); 
+		background-repeat: no-repeat; 
+		background-size: 100%;
+
+	}
+	/* 자세히보기 */
+	button.section_new_product_more {   
+		display: inline-block;
+    	width: 125px;
+    	height: 38px;
+    	font-size: 15px;
+    	color: white;
+    	line-height: 34px;
+    	text-align: center;
+    	border-color: white;
+    	
+    	
+    	background-color: transparent !important;
+	    background-image: none !important;
+
+	
+
+
+    	
+    }
 	
 	/* 공지사항 */
 
@@ -201,7 +235,11 @@
 		
 		<section>
 			<div id="section_new_product">
-				<img class="img_newmenu" src="images/1_newmenu.png" width="95%" height="646px" /> 	
+				<div id="section_new_product_slogan">
+					<div class="section_new_product_emblem"></div> 
+					
+					<button class="section_new_product_more" onclick="alert('자세히보기')" >자세히보기</button>
+				</div>
 			</div>
 			
 			<div id="section_notice">
