@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>notice_view.sb</title>
+<title>notice_write.sb</title>
 <style type="text/css">
 
 	body {
@@ -41,14 +41,19 @@
 	    border-bottom: 1px solid #333333;
 	}
 	
+	input.input_title {
+		height: 30px;
+	}
+	
+	
 	tbody > tr >td {
-		font-size: 14px;
-	    color: #666666;
+		font-size: 20px;
+	    font-weight: bold;
+	    color: #222222;
 	    text-align: left;
 	    padding: 17px 14px;
 	    border-bottom: 1px solid #dddddd;
-	    line-height: 1.8;
-	
+	    line-height: 1.8;	
 	}
 	
 	div#notice_button_wrap{
@@ -82,18 +87,27 @@
 	a.delete {
 		cursor: pointer;
 	}
-	
-	.th {
-		background: #f4f4f2;
-	}
-	
+
 	.next_post {
+		font-size: 14px;
+	    color: #666666;
+	    font-weight: normal;
 		border-top: 1px solid #333333;
 		border-bottom: 1px solid #dddddd;
 	}
 	
 	.pre_post {
+		font-size: 14px;
+	    color: #666666;
+	    font-weight: normal;
 		border-bottom: 1px solid #333333;
+	}
+	
+	.th {
+		background: #f4f4f2;
+		font-size: 16px;
+	    font-weight: bold;
+	    color: #222222;
 	}
 
 </style>
@@ -112,40 +126,41 @@
 		<!-- -------------------------------- 헤더 끝 ---------------------------------- -->
 		
 		<section>
+
 			<table>
 				<thead>
 					 <tr>
-					 	<th>SSG PAY 시스템 점검 안내</th>
+					 	<th>
+						 	<label>제목</label>
+							<input type="text" size="110" class="input_title"/>
+						</th>
 					 </tr>
 				</thead>
 				
 				<tbody>
 					<tr>
 						<td>
-							<p>안녕하세요. 스타벅스커피 코리아입니다. </p>
-							<p>SSG PAY 결제 서비스 시스템 점검을 아래와 같이 진행합니다.</p>
-							<p>- 일자 및 시간 : 2020년 06월 01일(월) 00시 ~ 05시 (5시간)</p>
-							<p>해당 점검 시간 중 스타벅스에서 SSG PAY로 결제하는 서비스가 일시 중지되는 점 양해 부탁드립니다.</p>
-							<p>감사합니다.</p>
-							<br/><br/><br/><br/><br/>
+							<label style="vertical-align: top;">내용</label>
+							<textarea rows="20" cols="100"></textarea>
 						</td>
 					</tr>
 				</tbody>
 			</table>
+	
 			
 			<div id="notice_button_wrap">
 				<p id="notice_button">
-					<a href="notice_list.html">목록</a>
+					<a onclick="alert('작성')">작성</a>
 				</p>
 				<p id="notice_button">
-					<a class="delete" onclick="alert('삭제')">삭제</a>
+					<a type="reset" class="delete" onclick="alert('취소')">취소</a>
 				</p>
 			</div>
 			
 			<div>
 				<table>
 					<tr>
-						<th class="next_post th">윗글</th>
+						<th class="next_post th" >윗글</th>
 						<td class="next_post">BC카드 ISP/페이북 시스템 점검 안내</td>
 					</tr>
 					<tr>
