@@ -77,15 +77,20 @@
 		height: 646px;
 		background-color: #f4e7c7;
 		background-image: url('images/section_new_product_background.jpg');
-		background-repeat : no-repeat;
-		background-size : cover; 
+		background-repeat : no-repeat; 
+		/* background-size : cover; */
+	}
+	
+	div.new_back_size {
+		/* 이미지 비율 지정해주는 곳 */
+    	background-size: 110% 100%;
+		
 	}
 	
 	div#section_new_product_slogan {
 		display: inline-block;
-		border: solid 1px red;
-/* 		width: 100%;
-		height: 100%; */
+		/* width: 80%;
+		height: 80%; */
 		display: absolute;
 	}
 	
@@ -102,6 +107,12 @@
 		background-size: 100%;
 
 	}
+	
+	div.back_size_eb {
+    	/* 이미지 비율 지정해주는 곳 */
+    	background-size: 17vw 17vw;
+    }
+	
 	/* 자세히보기 */
 	button.section_new_product_more {   
 		display: inline-block;
@@ -116,49 +127,58 @@
 
     	position: absolute;
     	
-    	top: 37vw; 
+    	top: 34vw; 
 		left: 13vW; 
     	background-color: transparent !important; /* 뒷 배경과 동일하게 배경 설정하기 */
 	    background-image: none !important;    	
     }
-    
+
     div.section_new_product_limemojito {
-		top: 11%;
-	    left: 70%;
-	    width: 24%;
-	    height: 50%;
-	    background-image: url('images/section_new_product_limemojito.png');
-	    margin-left: 45%;
+		background-image: url('images/section_new_product_limemojito.png');
+		position: absolute;
+		/* 이미지 크기 지정해주는 곳 */
+		width: 30vw;
+		height: 40vh;
+		top: 15vw;
+		left: 45vw;
+    } 
+    
+    div.back_size_lm {
+    	/* 이미지 비율 지정해주는 곳 */
+    	background-size: 30vw 22vw;
     }
-	
-	div.section_new_product_doubleexpresso {
-		top: 10%;
-	    left: 70%;
-	    width: 25%;	
-	    height: 65%;
+    
+    div.section_new_product_doubleexpresso {
 	    background-image: url('images/section_new_product_doubleexpresso.png');
-	    margin-left: 33%;
-	    margin-top: -8%;
+	    position: absolute;
+		/* 이미지 크기 지정해주는 곳 */
+		width: 30vw;
+		height: 49vh;
+		top: 30vw;
+		left: 35vw;
+    }
+    
+    div.back_size_de {
+    	/* 이미지 비율 지정해주는 곳 */
+    	background-size: 28vw 28vw;
     }
     
     div.section_new_product_applemango {
-		top: 10%;
-	    left: 70%;
-	    width: 20%;	
-	    height: 70%;
 	    background-image: url('images/section_new_product_applemango.png');
-	    margin-left: 62%;
-	    margin-top: -22%;
+	    position: absolute;
+		/* 이미지 크기 지정해주는 곳 */
+		width: 29vw;
+		height: 50vh;
+		top: 28vw;
+		left: 61vw;
     }
     
-    /* .new_product {
-    	width: 24%;
-	    height: 50%;
+    div.back_size_am {
+    	/* 이미지 비율 지정해주는 곳 */
+    	background-size: 27vw 30vw;
     }
-	 */
 	
 	/* 공지사항 */
-
 	
 	div#section_notice {
 		/* border-top: solid 2px white;	
@@ -284,15 +304,15 @@
 		<!-- -------------------------------- 헤더 끝 ---------------------------------- -->
 		
 		<section>
-			<div id="section_new_product">
+			<div id="section_new_product" class="new_back_size">
 				<div id="section_new_product_slogan">
-					<div class="section_new_product_emblem"></div> 
+					<div class="section_new_product_emblem back_size_eb"></div> 
 					
 					<button class="section_new_product_more" onclick="alert('자세히보기')" >자세히보기</button>
 				</div>
-				<div class="section_new_product_limemojito"><a href="notice_list.html" class="new_product"></a></div>
-				<div class="section_new_product_doubleexpresso"></div>
-				<div class="section_new_product_applemango"></div>
+				<div class="section_new_product_limemojito back_size_lm" style="cursor: pointer;" onclick="window.location.href='notice_list.html'"></div>
+				<div class="section_new_product_doubleexpresso back_size_de" style="cursor: pointer;" onclick="window.location.href='notice_list.html'"></div>
+				<div class="section_new_product_applemango back_size_am" style="cursor: pointer;" onclick="window.location.href='notice_list.html'"></div>
 			</div>
 			
 			<div id="section_notice">
