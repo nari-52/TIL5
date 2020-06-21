@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index2.sb</title>
+<title>index.sb</title>
 
 <style type="text/css">
 
@@ -48,7 +48,6 @@
 	
 	nav {
 		text-align: right;
-
 	}
 	
 	.nav_first {
@@ -70,8 +69,6 @@
 	/* ---------------------------- 헤더 끝 -------------------------- */
 	
 	/* 신제품 */
-	
-	
 	div#section_new_product {
 		/* border: solid 1px skyblue; */
 		height: 646px;
@@ -84,7 +81,6 @@
 	div.new_back_size {
 		/* 이미지 비율 지정해주는 곳 */
     	background-size: 110% 100%;
-		
 	}
 	
 	div#section_new_product_slogan {
@@ -105,7 +101,6 @@
 		background-image: url('images/section_new_product_emblem.png'); 
 		background-repeat: no-repeat; 
 		background-size: 100%;
-
 	}
 	
 	div.back_size_eb {
@@ -124,14 +119,20 @@
     	text-align: center;
     	border-color: white;
     	font-weight: bolder;
-
-    	position: absolute;
-    	
+    	position: absolute;	
     	top: 34vw; 
 		left: 13vW; 
-    	background-color: transparent !important; /* 뒷 배경과 동일하게 배경 설정하기 */
-	    background-image: none !important;    	
+    	background-color: transparent; /* 뒷 배경과 동일하게 배경 설정하기 */
+	    background-image: none;  
+	    transition-property:background-color;
+    	transition-duration:1s;  	
     }
+    
+    button.section_new_product_more:hover {
+		background-color: #ff6600;
+		text-decoration: underline;
+		cursor: pointer;	
+	}
 
     div.section_new_product_limemojito {
 		background-image: url('images/section_new_product_limemojito.png');
@@ -139,7 +140,7 @@
 		/* 이미지 크기 지정해주는 곳 */
 		width: 30vw;
 		height: 40vh;
-		top: 15vw;
+		top: 12vw;
 		left: 45vw;
     } 
     
@@ -154,7 +155,7 @@
 		/* 이미지 크기 지정해주는 곳 */
 		width: 30vw;
 		height: 49vh;
-		top: 30vw;
+		top: 25vw;
 		left: 35vw;
     }
     
@@ -169,7 +170,7 @@
 		/* 이미지 크기 지정해주는 곳 */
 		width: 29vw;
 		height: 50vh;
-		top: 28vw;
+		top: 22vw;
 		left: 61vw;
     }
     
@@ -221,22 +222,72 @@
 		background-image: url('images/reward_texbg.jpg');
 		padding: 0;
 		color : white;
-		
 	}
 	
 	img#section_reward_mystarbucks_logo {
 		position: absolute	;
-		top: 48%;
-		left: 15%;
+		top: 44%;
+		left: 9vw;
 	}
 	
-	div#section_reward_txt {
-		position: relative;
-		border: solid 1px red;
-		top: -70%;
-		left: 50%
+	img#section_reward_txt1 {
+		/* border: solid 1px blue; */
+		position: absolute	;
+		top: 15%;
+		left: 35vw;
+		width: 27vw; 
+		height: 6vw;
 	}
 	
+	img#section_reward_txt2 {
+		/* border: solid 1px yellow; */
+		position: absolute	;
+		top: 50%;
+		left: 35vw;
+		width: 20vw; 
+		height: 8vw;
+	}
+	
+	/* 버튼만들기 ---------------------------------------- */
+	div#reward_button {
+		/* border: solid 1px red; */
+		position: absolute;
+		top: 30%;
+		left: 67vw;
+
+	}
+	
+	button.reward_button {
+		border: solid 2px black;
+		width: 120px;
+		height: 50px;
+		margin-bottom: 30px;
+		margin-right: 20px;
+		border-radius: 5%;
+		font-weight: bold;
+		background-color: transparent; /* 뒷 배경과 동일하게 배경 설정하기 */
+	    background-image: none;  
+		/* padding: 0.5vw 1vw; */
+	}
+	
+	button.reward_button:hover {
+		background-color: black;
+		color: white;
+		font-weight: bold;
+		cursor: pointer;
+	}
+	
+	button.reward_btn_signup:hover {
+		background-color: black;
+		color: white;
+		font-weight: bold;
+	}
+	
+	button.reward_btn_product {
+		width: 170px;
+		text-align: center;
+		margin-left: 50px;
+	}
 	
 	/* 추천메뉴 */
 	
@@ -327,13 +378,16 @@
 			
 			<section>
 			<div id="section_reward">
-				<img id="section_reward_mystarbucks" src="images/section_reward_mystarbucks.png" width="45%" height="335px"/>
+				<img id="section_reward_mystarbucks" src="images/section_reward_mystarbucks.png" width="35%" height="335px"/>
 				<img id="section_reward_mystarbucks_logo" src="images/section_reward_mystarbucks_logo.png" />
-				<div id="section_reward_txt">
-					<img id="section_reward_txt1" src="images/section_reward_txt1.png" />
-					<img id="section_reward_txt2" src="images/section_reward_txt2.png" />
-				</div>
-				
+				<img id="section_reward_txt1" src="images/section_reward_txt1.png" />
+				<img id="section_reward_txt2" src="images/section_reward_txt2.png" />
+				<div id="reward_button">
+					<button class="reward_button reward_btn_signup" type="button" onclick="window.location.href='notice_list.html'">회원가입</button>
+					<button class="reward_button reward_btn_login" type="button" onclick="window.location.href='notice_list.html'">로그인</button>
+					<br/>
+					<button class="reward_button reward_btn_product" type="button" onclick="window.location.href='notice_list.html'">더 많은 상품보기</button>
+				</div>	
 			</div>
 			</section>
 			
