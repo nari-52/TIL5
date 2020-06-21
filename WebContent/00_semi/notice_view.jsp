@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>notice_view.sb</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<jsp:include page="header.jsp" />
+    
 <style type="text/css">
 
-	body {
-		min-width: 320px;
-	}
-	
-	div#container {
+ 	div.notice_view {
 		width: 60%;
 		margin: 0 auto;
-	}
+	} 
 
 	div#sub_header {
 		height: 98px;
@@ -67,7 +63,7 @@
 		margin: 30px 20px 50px 0px;
 	}
 	
-	a {
+	a.notice_view {
 		display: inline-block;
 	    font-size: 14px;
 	    color: #fff;
@@ -96,11 +92,9 @@
 		border-bottom: 1px solid #333333;
 	}
 
-</style>
-</head>
-<body>
-
-	<div id="container">
+</style>    
+    
+	<div class="notice_view">
 		<header>
 			<div id="sub_header">
 				<h2>
@@ -135,10 +129,10 @@
 			
 			<div id="notice_button_wrap">
 				<p id="notice_button">
-					<a href="notice_list.html">목록</a>
+					<a href="notice_list.html" class="notice_view">목록</a>
 				</p>
 				<p id="notice_button">
-					<a class="delete" onclick="alert('삭제')">삭제</a>
+					<a class="delete notice_view" onclick="alert('삭제')">삭제</a>
 				</p>
 			</div>
 			
@@ -154,13 +148,10 @@
 					</tr>
 				</table>
 			</div>
-		
-		
-		</section>
-		
-		
-		
-	</div>
+			<br/><br/><br/>
 
-</body>
-</html>
+		</section>
+
+	</div>
+	
+<jsp:include page="footer.jsp" />

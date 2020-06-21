@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index2.sb</title>
+<title>index.sb</title>
 
 <style type="text/css">
 
@@ -164,7 +164,7 @@
 	    position: absolute;
 		/* 이미지 크기 지정해주는 곳 */
 		width: 30vw;
-		height: 49vh;
+		height: 51vh;
 		top: 25vw;
 		left: 35vw;
     }
@@ -179,7 +179,7 @@
 	    position: absolute;
 		/* 이미지 크기 지정해주는 곳 */
 		width: 29vw;
-		height: 50vh;
+		height: 52vh;
 		top: 22vw;
 		left: 61vw;
     }
@@ -305,7 +305,31 @@
 	div#section_recommended_menu {
 		/* border: solid 1px purple; */
 		height: 573px;
-		background-color: skyblue;
+		background-image: url('images/section_recommended_menu_back2.jpg');
+ 		background-size: 100% 100%; 
+ 		text-align: center;
+	}
+	
+	img#section_recommended_text {
+		width: 250px;
+		height: 200px;
+		position: relative;
+		top: -15vh;
+		margin-right: 10vw;
+	}
+	
+	img#section_recommended_menu_1 {
+		border-radius: 50%;
+		position: relative;
+		top: 5vh;
+	}
+	
+	
+	/* 리저브매장 */
+	div#section_reserve {
+		height: 573px;
+		background-image: url('images/section_reserve_back.jpg');
+		background-size: 100vw 40vw;
 	}
 	
 	div#section_map {
@@ -357,8 +381,6 @@
 						<li><a>QNA</a></li>
 					</ul>
 				</nav>
-		
-
 			</div>
 		
 		</header>
@@ -403,7 +425,12 @@
 			</section>
 			
 			<div id="section_recommended_menu">
-			추천메뉴
+				<img id="section_recommended_text" src="images/section_recommended_text1.png" />
+				<img id="section_recommended_menu_1" src="images/section_recommended_menu_1.jpg" width="500px" height="500px" style="cursor: pointer;" onclick="window.location.href='notice_list.html'"/>
+			</div>
+			
+			<div id="section_reserve">
+			
 			</div>
 			
 			<div id="section_map">
