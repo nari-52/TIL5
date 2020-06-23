@@ -93,24 +93,24 @@
 	<div id="container">
 		<header class="index">
 			<div id="header_1">
-				<a href="/index.sb" class="index" >
-					<img id="logo" src="/StarbucksWeb/images/nari/starbucslogo.png" width="75px" height="75px"/> 
+				<a href="<%= ctxPath%>/index.sb" class="index" >
+					<img id="logo" src="<%= ctxPath%>/images/nari/starbucslogo.png" width="75px" height="75px"/> 
 				</a>
 			</div>
 			<div id="header_2">
 				<nav class="nav_first index">
 					<ul class="index">
-						<li class="index"><a class="index">SIGN IN</a></li>
-						<li class="index"><a class="index">SHOPPING BASKET</a></li>
-						<li class="index"><a class="index">MY STARBUCS</a></li>
-						<li class="index"><a class="index">MANAGER PAGE</a></li>
+						<li class="index"><a href="<%= ctxPath%>/register/memberRegister.up"  class="index">SIGN IN</a></li>
+						<li class="index"><a href="<%= ctxPath%>/order/shoppingCart.sb"  class="index">SHOPPING BASKET</a></li>
+						<li class="index"><a href="<%= ctxPath%>/member/myPage.sb"  class="index">MY STARBUCS</a></li>
+						<li class="index"><a href="<%= ctxPath%>/notice/noticeList.sb"  class="index">MANAGER PAGE(임시)</a></li>
 					</ul>
 				</nav>
 				<nav class="nav_second index">
 					<ul class="index">
-						<li class="index"><a class="index">MENU</a></li>
-						<li class="index"><a href="notice_list.html" class="index">NOTICE</a></li>
-						<li class="index"><a class="index">QNA</a></li>
+						<li class="index"><a href="<%= ctxPath%>/product/menu.sb"  class="index">MENU</a></li>
+						<li class="index"><a href="<%= ctxPath%>/notice/noticeList.sb" class="index">NOTICE</a></li>
+						<li class="index"><a href="<%= ctxPath%>/feedback/feedbackList.up"  class="index">QNA</a></li>
 					</ul>
 				</nav>
 			</div>

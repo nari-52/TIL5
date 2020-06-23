@@ -670,6 +670,20 @@
     , constraint PK_notice_post_notice_seq primary key(notice_seq)
     );
     
+    -- 수정
+     create table notice_post
+    ( notice_seq        number(4)   not null        -- 공지사항시퀀스
+    , title             varchar2(100)   not null    -- 글제목
+    , contents          varchar2(4000)  not null    -- 글내용
+    , write_day         date default sysdate        -- 작성일
+    , hit               Number(4)                   -- 조회수
+    , constraint PK_notice_post_notice_seq primary key(notice_seq)
+    );
+    
+    
+    
+    -- rownum
+     
     -- 공지사항시퀀스
     create sequence seq_notice_post
     start with 1
@@ -679,33 +693,36 @@
     nocycle
     nocache;
            
+    insert into notice_post (notice_seq, title, contents, write_day)
+    values (seq_notice_post.nextval, '공지1', '공지 내용 1', default); 
+    insert into notice_post (notice_seq, title, contents, write_day)
+    values (seq_notice_post.nextval, '공지2', '공지 내용 2', default); 
+    insert into notice_post (notice_seq, title, contents, write_day)
+    values (seq_notice_post.nextval, '공지3', '공지 내용 3', default); 
     insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지1', '공지 내용 1', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지2', '공지 내용 2', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지3', '공지 내용 3', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지4', '공지 내용 4', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지5', '공지 내용 5', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지6', '공지 내용 6', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지7', '공지 내용 7', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지8', '공지 내용 8', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지9', '공지 내용 9', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지10', '공지 내용 10', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지11', '공지 내용 11', default); 
+--    values (seq_notice_post.nextval, 1, '공지4', '공지 내용 4', default); 
+--    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+--    values (seq_notice_post.nextval, 1, '공지5', '공지 내용 5', default); 
+--    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+--    values (seq_notice_post.nextval, 1, '공지6', '공지 내용 6', default); 
+--    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+--    values (seq_notice_post.nextval, 1, '공지7', '공지 내용 7', default); 
+--    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+--    values (seq_notice_post.nextval, 1, '공지8', '공지 내용 8', default); 
+--    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+--    values (seq_notice_post.nextval, 1, '공지9', '공지 내용 9', default); 
+--    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+--    values (seq_notice_post.nextval, 1, '공지10', '공지 내용 10', default); 
+--    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+--    values (seq_notice_post.nextval, 1, '공지11', '공지 내용 11', default); 
     
     commit;
     
     select *
     from notice_post;
+    
+    select seq_notice_post.nextval
+    from dual;
     
     
     drop table store_location purge;
@@ -717,8 +734,8 @@
     , store_sequence    number(4)   not null        -- 매장시퀀스
     , store_name        varchar2(30)   not null     -- 매장명
     , address           varchar2(200)  not null     -- 주소
-    , latitude          number(4,7)  not null        -- 위도
-    , longitude         number(4,7)  not null        -- 경도
+    , latitude          number  not null        -- 위도
+    , longitude         number  not null        -- 경도
     , constraint PK_store_location_sid primary key(store_id)
     );
     
@@ -735,7 +752,24 @@
     from store_location;
     
     insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
-    values (1, seq_store_location.nextval, '을지로삼화타워점', '서울특별시 중구 수하동 을지로5길 16', 37.566996, 126.984612); 
+    values (1, seq_store_location.nextval, '을지로삼화타워점', '서울특별시 중구 수하동 을지로5길 16', 37.566996, 126.984612);
+    
+    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
+    values (2, seq_store_location.nextval, '종로관철점', '서울특별시 종로구 관철동 종로12길 21', 37.569023, 126.986006);
+    
+    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
+    values (3, seq_store_location.nextval, '종각점', '서울특별시 종로구 종로2가 종로 64', 37.569993, 126.984534);
+    
+    
+    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
+    values (4, seq_store_location.nextval, '을지로한국빌딩점', '서울특별시 중구 명동 을지로 50', 37.565690, 126.983299);
+    
+    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
+    values (5, seq_store_location.nextval, '소공동점', '서울특별시 중구 소공동', 37.564907, 126.979189);
+    
+    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
+    values (6, seq_store_location.nextval, '남산단암점', '서울특별시 중구 회현동 소월로 10', 37.558648, 126.975294);
+    
     
     commit;
     

@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%
+	String ctxPath = request.getContextPath();
+	// ctxPath = /StarbucksWeb
+%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <jsp:include page="../header.jsp" />
 
 <title>notice_list.sb</title>
@@ -133,6 +140,114 @@
 
 </style>
 
+<script type="text/javascript">
+	
+	$(document).ready(function(){ 
+		
+		
+		 //func_newsTitleList();	
+
+		// 기사 줄 클릭 시 해당 기사를 보여준다.
+		$(document).on("click", ".mynews", function(){
+			var seqno = $(this).find(".seqno").text();
+			// alert(seqno); 클릭하면 해당 기사의 번호를 출력한다.
+			func_newsContents(seqno);
+			
+		}); 
+		
+		
+		// 기사 작성 버튼 클릭 --------------------------------------------------
+		$("#btnSubmit").click(function(){ 
+			$.ajax({ 
+				url: "<%= ctxPath%>/ajaxstudy/jsontestNewsWrite.up",
+				type: "post", 
+				data: {"title": $("#title").val(), 
+					   "newscontents": $("#newscontents").val() },
+				success: function(){
+					func_newsTitleList();
+					$("#title").val("");
+					$("#newscontents").val("");
+				},
+				error: function(request, status, error){
+					alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+				}
+			 
+			});
+		});
+		
+		
+		var bIsClickEmailCheck = false; // email 중복검사를 클릭 했는지 알아보기위한 것.
+
+		
+		
+		
+		
+		
+		
+	}); // end of $(document).ready(function()----------------------------
+	
+	
+	function func_newsTitleList() {
+		
+		$.ajax({ 
+			url:"<%= ctxPath%>/ajaxstudy/jsontestNewsTitle.up",
+			dataType:"json",
+			// async:true,		// 비동기처리 하겠다. (기본셋팅)
+			success: function(json) { // 콜백함수
+				
+				var html = "<table id='newstbl'>";
+					html += "<tr>";
+					html += 	"<th>기사연번</th>";
+					html += 	"<th>기사제목</th>";
+					html += 	"<th>입력일자</th>";
+					html += "</tr>";
+					
+					$.each(json, function(index,item){ // 반복문
+			    		if(index == 0) {
+			    			func_newsContents(item.seqtitleno);
+			    		}
+			    		html += "<tr class='mynews'>";
+			    		html +=    "<td class='seqno'>"+ item.seqtitleno +"</td>";
+			    		html +=    "<td>"+ item.title +"</td>";
+			    		html +=    "<td>"+ item.registerday +"</td>";
+			    		html += "</tr>";
+			    	});
+					
+					html += "</table>";
+				
+				$("#newsTitleList").html(html);
+				
+			},
+			error: function(request, status, error){
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+			}
+
+		});
+		
+	} // end of func_newsTitleList()-----------------------------------
+		
+	function func_newsContents(seqno) {
+		
+		$.ajax({
+			url:"<%= ctxPath%>/ajaxstudy/jsontestNewsContents.up",
+			type: "get", 	// 생략하면 get
+			data: {"seqno":seqno},	// "seqno" getParameter 해오는 값이다.
+			dataType: "json",
+			success: function(json){
+				var html = json.newscontents;
+				$("#newsContent").html(html);
+			},
+			error: function(request, status, error){
+				alert("code: "+request.status+"\n"+"message: "+request.responseText+"\n"+"error: "+error);
+			}			
+		});
+		
+	} // end of function func_newsContents(seqno)----------------------
+	
+	
+	
+</script>
+
 
 	<div id="container_notice_list">
 		<header>
@@ -170,73 +285,21 @@
 				</thead>
 				
 				<tbody>
+					<c:forEach var="notice" items="${noticeList}">
 					<tr>
-						<td>241</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
+						<td>${notice.notice_seq}</td>
+						<td>${notice.title}</td>
+						<td>${notice.write_day}</td>
+						<td>${notice.hit}</td>
 					</tr>
-					<tr>
-						<td>240</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
-					<tr>
-						<td>239</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
-					<tr>
-						<td>238</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
-					<tr>
-						<td>237</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
-					<tr>
-						<td>236</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
-					<tr>
-						<td>235</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
-					<tr>
-						<td>234</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
-					<tr>
-						<td>233</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
-					<tr>
-						<td>232</td>
-						<td>SSG PAY 시스템 점검 안내</td>
-						<td>2020-05-27</td>
-						<td>3941</td>
-					</tr>
+					</c:forEach>
 				</tbody>
 			
 			</table>
 			
 			<div id="notice_button_wrap">
 				<p id="notice_button">
-					<a class="write notice_list" href="notice_write.html" >글쓰기</a>
+					<a class="write notice_list" href="noticeWrite.sb" >글쓰기</a>
 				</p>
 			</div>
 		

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	String ctxPath = request.getContextPath();
+	// ctxPath = /StarbucksWeb
+%>
     
 <jsp:include page="../header.jsp" />
     
@@ -112,6 +117,24 @@
 
 </style>
 
+<script type="text/javascript">
+	
+	$(document).ready(function(){ 
+				
+		$("#btnNoticeSubmit").click(function(){
+			// 유효성검사는 나중에 하세요!!
+			var frm = document.noticeFrm;
+			frm.method = "POST";
+			frm.action = "noticeWrite.sb";
+			frm.submit();
+		});
+		
+	}); // end of $(document).ready(function()----------------------------
+	
+	
+</script>
+
+
 	<div class="notice_write">
 		<header>
 			<div id="sub_header">
@@ -124,13 +147,13 @@
 		<!-- -------------------------------- 헤더 끝 ---------------------------------- -->
 		
 		<section>
-
+		<form name="noticeFrm">
 			<table>
 				<thead>
 					 <tr>
 					 	<th>
 						 	<label class="notice_write_title" >제목</label>
-							<input type="text" size="98" class="input_title"/>
+							<input type="text" id="title" name="title" size="98" class="input_title"/>
 						</th>
 					 </tr>
 				</thead>
@@ -139,7 +162,7 @@
 					<tr>
 						<td>
 							&nbsp;<label style="vertical-align: top;">내용</label>
-							<textarea rows="20" cols="100"></textarea>
+							<textarea id="contents" name="contents" rows="20" cols="100"></textarea>
 						</td>
 					</tr>
 				</tbody>
@@ -148,13 +171,15 @@
 			
 			<div id="notice_button_wrap">
 				<p id="notice_button">
-					<a onclick="alert('작성')" class="notice_write">작성</a>
+					<a type="button" id="btnNoticeSubmit"  class="notice_write">작성</a> 
+					<%-- <button type="button" id="btnNoticeSubmit"  class="notice_write">작성</button> --%>
 				</p>
 				<p id="notice_button">
-					<a type="reset" class="delete notice_write" onclick="alert('취소')">취소</a>
+					<a type="reset" class="delete notice_write">취소</a> 
+					<%-- <button type="reset" class="delete notice_write">취소</button> --%>
 				</p>
 			</div>
-			
+			</form>
 			<div>
 				<table>
 					<tr>
@@ -167,6 +192,7 @@
 					</tr>
 				</table>
 			</div>
+		
 			<br/><br/><br/>
 		</section>
 

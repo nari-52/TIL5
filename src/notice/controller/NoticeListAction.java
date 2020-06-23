@@ -17,10 +17,13 @@ public class NoticeListAction extends AbstractController {
 
 		
 		InterNoticeDAO dao = new NoticeDAO();
-		// List<NoticeVO> noticeList = dao.noticeTitleList();
+		List<NoticeVO> noticeList = dao.noticeTitleList();
+		
+		request.setAttribute("noticeList", noticeList);
+		
 		
 		// === org.json.* 을 사용한 것 === //
-		JSONArray jsonArr = new JSONArray();
+		// JSONArray jsonArr = new JSONArray();
 		
 		
 		// request.setAttribute(name, o); // 넘겨줄 값

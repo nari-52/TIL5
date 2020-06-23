@@ -1,6 +1,6 @@
 package notice.model;
 
-public class NoticeVO implements InterNoticeDAO {
+public class NoticeVO  {
 	
 	private int notice_seq;
 	private int post_no;
@@ -57,6 +57,8 @@ public class NoticeVO implements InterNoticeDAO {
 	public void setHit(int hit) {
 		this.hit = hit;
 	}
+
+
 	
 	
 	
