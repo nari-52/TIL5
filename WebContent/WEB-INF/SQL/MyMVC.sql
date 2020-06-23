@@ -658,6 +658,7 @@
     -- [Starbucks] -------------------------------------------------------------------------------------------------
     -- 공지사항 게시판
     drop table notice_post purge;
+    drop sequence seq_notice_post;
     
     create table notice_post
     ( notice_seq        number(4)   not null        -- 공지사항시퀀스
@@ -677,33 +678,38 @@
     nominvalue
     nocycle
     nocache;
-    
-    
-    insert into shopping_product(pnum, pname, pcategory_fk, pcompany, 
-                                 pimage1, pimage2, pqty, price, saleprice,
-                                 pspec, pcontent, point)
-    values(seq_shopping_product_pnum.nextval, '만화한국사', '300000', '녹색지팡이',
-           'book_koreahistory_1.png','book_koreahistory_2.png',
-           80,130000,120000,'HIT','만화로 보는 이야기 한국사 전집', 60);
            
     insert into notice_post (notice_seq, post_no, title, contents, write_day)
     values (seq_notice_post.nextval, 1, '공지1', '공지 내용 1', default); 
     insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지1', '공지 내용 1', default); 
+    values (seq_notice_post.nextval, 1, '공지2', '공지 내용 2', default); 
     insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지1', '공지 내용 1', default); 
+    values (seq_notice_post.nextval, 1, '공지3', '공지 내용 3', default); 
     insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지1', '공지 내용 1', default); 
+    values (seq_notice_post.nextval, 1, '공지4', '공지 내용 4', default); 
     insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지1', '공지 내용 1', default); 
+    values (seq_notice_post.nextval, 1, '공지5', '공지 내용 5', default); 
     insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지1', '공지 내용 1', default); 
+    values (seq_notice_post.nextval, 1, '공지6', '공지 내용 6', default); 
     insert into notice_post (notice_seq, post_no, title, contents, write_day)
-    values (seq_notice_post.nextval, 1, '공지1', '공지 내용 1', default); 
+    values (seq_notice_post.nextval, 1, '공지7', '공지 내용 7', default); 
+    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+    values (seq_notice_post.nextval, 1, '공지8', '공지 내용 8', default); 
+    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+    values (seq_notice_post.nextval, 1, '공지9', '공지 내용 9', default); 
+    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+    values (seq_notice_post.nextval, 1, '공지10', '공지 내용 10', default); 
+    insert into notice_post (notice_seq, post_no, title, contents, write_day)
+    values (seq_notice_post.nextval, 1, '공지11', '공지 내용 11', default); 
     
+    commit;
     
     select *
     from notice_post;
+    
+    
+    drop table store_location purge;
+    drop sequence seq_store_location;
     
     -- 매장위치
     create table store_location
@@ -711,8 +717,8 @@
     , store_sequence    number(4)   not null        -- 매장시퀀스
     , store_name        varchar2(30)   not null     -- 매장명
     , address           varchar2(200)  not null     -- 주소
-    , latitude          number(30)                  -- 위도
-    , longitude         number(30)                  -- 경도
+    , latitude          number(4,7)  not null        -- 위도
+    , longitude         number(4,7)  not null        -- 경도
     , constraint PK_store_location_sid primary key(store_id)
     );
     
@@ -728,8 +734,8 @@
     select *
     from store_location;
     
-    insert into store_location (store_id, store_sequence, store_name, address)
-    values (1, seq_store_location.nextval, '을지로입구점', '서울시 을지로입구점'); 
+    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
+    values (1, seq_store_location.nextval, '을지로삼화타워점', '서울특별시 중구 수하동 을지로5길 16', 37.566996, 126.984612); 
     
     commit;
     
