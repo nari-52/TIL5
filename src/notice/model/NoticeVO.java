@@ -2,28 +2,27 @@ package notice.model;
 
 public class NoticeVO  {
 	
+	private int rno;
 	private int notice_seq;
-	private int post_no;
 	private String title;
 	private String contents;
 	private String write_day;
 	private int hit;
 	
+	public int getRno() {
+		return rno;
+	}
 	
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
+
 	public int getNotice_seq() {
 		return notice_seq;
 	}
 	
 	public void setNotice_seq(int notice_seq) {
 		this.notice_seq = notice_seq;
-	}
-	
-	public int getPost_no() {
-		return post_no;
-	}
-	
-	public void setPost_no(int post_no) {
-		this.post_no = post_no;
 	}
 	
 	public String getTitle() {

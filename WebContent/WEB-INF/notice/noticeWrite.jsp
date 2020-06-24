@@ -89,7 +89,7 @@
 	    text-decoration: none;
 	}
 	
-	a.delete {
+	a.delete, a.create  {
 		cursor: pointer;
 	}
 
@@ -122,14 +122,33 @@
 	$(document).ready(function(){ 
 				
 		$("#btnNoticeSubmit").click(function(){
-			// 유효성검사는 나중에 하세요!!
-			var frm = document.noticeFrm;
-			frm.method = "POST";
-			frm.action = "noticeWrite.sb";
-			frm.submit();
+			
+			goWrite();
+			
 		});
 		
 	}); // end of $(document).ready(function()----------------------------
+			
+	function goWrite() {
+		
+		var title = $("#title").val().trim();
+		var contents = $("#contents").val().trim();
+		
+		if (title == "") {
+			alert("제목은 반드시 입력해야 합니다!");
+			return;
+		}
+		
+		if (contents == "") {
+			alert("내용은 반드시 입력해야 합니다!");
+			return;	
+		}
+
+		var frm = document.noticeFrm;
+		frm.method = "POST";
+		frm.action = "noticeWrite.sb";
+		frm.submit();
+	}
 	
 	
 </script>
@@ -171,7 +190,7 @@
 			
 			<div id="notice_button_wrap">
 				<p id="notice_button">
-					<a type="button" id="btnNoticeSubmit"  class="notice_write">작성</a> 
+					<a type="button" id="btnNoticeSubmit"  class="create notice_write">작성</a> 
 					<%-- <button type="button" id="btnNoticeSubmit"  class="notice_write">작성</button> --%>
 				</p>
 				<p id="notice_button">
@@ -179,7 +198,7 @@
 					<%-- <button type="reset" class="delete notice_write">취소</button> --%>
 				</p>
 			</div>
-			</form>
+		</form>
 			<div>
 				<table>
 					<tr>

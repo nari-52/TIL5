@@ -676,12 +676,14 @@
     , title             varchar2(100)   not null    -- 글제목
     , contents          varchar2(4000)  not null    -- 글내용
     , write_day         date default sysdate        -- 작성일
-    , hit               Number(4)                   -- 조회수
+    , hit               Number(4) defatul 0         -- 조회수
     , constraint PK_notice_post_notice_seq primary key(notice_seq)
     );
     
-    
-    
+  /* 
+    alter table notice_post
+    modify hit default 0;
+  */  
     -- rownum
      
     -- 공지사항시퀀스
@@ -721,9 +723,26 @@
     select *
     from notice_post;
     
+  --  update notice_post set hit = 0;
+  --  commit;
+    
     select seq_notice_post.nextval
     from dual;
     
+    select notice_seq, title, to_char(write_day,'yyyy-mm-dd'), hit
+    from notice_post
+    order by 1 desc;
+    
+    select title, contents, hit
+    from notice_post
+    where to_char(notice_seq) = '13';
+    
+    update notice_post set hit = hit + 1 
+	where to_char(notice_seq) = '13';
+
+    select title, contents
+    from notice_post
+    where notice_seq = 5; 
     
     drop table store_location purge;
     drop sequence seq_store_location;

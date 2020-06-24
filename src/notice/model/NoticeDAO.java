@@ -76,9 +76,18 @@ public class NoticeDAO implements InterNoticeDAO {
 			conn = ds.getConnection();
 			
 			//////////////////////////////////////////////////////////////////////
-			String sql = " select notice_seq, title, write_day, hit\n"+
-				  		 " from notice_post\n"+
-						 " order by 1 desc ";
+			String sql = " select rno, notice_seq, title, write_day, hit " + 
+					" from  " + 
+					" ( " + 
+					"   select rownum AS RNO, notice_seq, title, write_day , hit " + 
+					"   from  " + 
+					"   ( " + 
+					"    select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit " + 
+					"    from notice_post " + 
+					"    order by 1 asc " + 
+					"   ) V " + 
+					"  ) T " + 
+					"  order by T.rno desc ";
 
 			pstmt = conn.prepareStatement(sql);
 			
@@ -86,7 +95,7 @@ public class NoticeDAO implements InterNoticeDAO {
 			
 			while(rs.next()) {
 				NoticeVO nvo = new NoticeVO();
-				
+				nvo.setRno(rs.getInt("rno"));
 				nvo.setNotice_seq(rs.getInt("notice_seq"));
 				nvo.setTitle(rs.getString("title"));
 				nvo.setWrite_day(rs.getString("write_day"));
@@ -101,4 +110,62 @@ public class NoticeDAO implements InterNoticeDAO {
 		return noticeList;
 	}
 
+	// 글번호를 가지고 특정 게시글 조회하기
+	@Override
+	public HashMap<String, String> selectOneNotice(String notice_seq) throws SQLException {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		try {
+			conn = ds.getConnection();			
+			
+			String sql = " update notice_post set hit = hit + 1 "
+					   + " where to_char(notice_seq) = ? ";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, notice_seq);
+			
+			pstmt.executeUpdate();
+			
+			sql = " select title, contents "+
+				  " from notice_post "+
+				  " where to_char(notice_seq) = ? "; // SQL문 오류 방지를 위해 문자열로 바꿔준다.	
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, notice_seq);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				map.put("title", rs.getString("title"));
+				map.put("contents", rs.getString("contents"));
+			}
+	
+		} finally {
+			close();
+		}
+		
+		return map;
+		
+	} // end of public NoticeVO selectOneNotice(String notice_seq)
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

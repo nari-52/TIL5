@@ -11,6 +11,14 @@ public interface InterNoticeDAO {
 
 	// 공지사항 글목록 불러오기
 	List<NoticeVO> noticeTitleList() throws SQLException;
+
+	// 글번호를 가지고 특정 게시글 조회하기
+	HashMap<String, String> selectOneNotice(String notice_seq) throws SQLException;
+
+	
+
+	
+	
 	
 	
 }

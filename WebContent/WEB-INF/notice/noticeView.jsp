@@ -109,18 +109,14 @@
 			<table>
 				<thead>
 					 <tr>
-					 	<th>SSG PAY 시스템 점검 안내</th>
+					 	<th>${map.title}</th>
 					 </tr>
 				</thead>
 				
 				<tbody>
 					<tr>
 						<td>
-							<p>안녕하세요. 스타벅스커피 코리아입니다. </p>
-							<p>SSG PAY 결제 서비스 시스템 점검을 아래와 같이 진행합니다.</p>
-							<p>- 일자 및 시간 : 2020년 06월 01일(월) 00시 ~ 05시 (5시간)</p>
-							<p>해당 점검 시간 중 스타벅스에서 SSG PAY로 결제하는 서비스가 일시 중지되는 점 양해 부탁드립니다.</p>
-							<p>감사합니다.</p>
+							${map.contents}
 							<br/><br/><br/><br/><br/>
 						</td>
 					</tr>
@@ -129,7 +125,7 @@
 			
 			<div id="notice_button_wrap">
 				<p id="notice_button">
-					<a href="notice_list.html" class="notice_view">목록</a>
+					<a href="noticeList.sb" class="notice_view">목록</a>
 				</p>
 				<p id="notice_button">
 					<a class="delete notice_view" onclick="alert('삭제')">삭제</a>

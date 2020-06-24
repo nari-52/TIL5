@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>MyMVC</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>StarbucksWeb</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -10,50 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <!-- 주석문 형식 -->
-  <!-- === 서블릿 (Servlet)등록하기 === -->
-  <!-- 왓스에 기억해준다. (submit 하였을 때) -->
-  <!-- 확장자 .xml, .java는 /MyMVC (컨텍스트명)을 작성하지 않는다.  -->
-  
-  <!-- =========================== 01 get ============================= -->
-    
-  <servlet>
-  	<servlet-name>getMethodTest1</servlet-name>
-  	<servlet-class>begin.chap02.GetMethodTest1</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-  	<servlet-name>getMethodTest1</servlet-name>
-  	<!-- <url-pattern>/</url-pattern> ==> / 에는 /MyMVC가 생략되어있다. -->
-  	<url-pattern>/getMethodTest1.do</url-pattern>
-  </servlet-mapping>
-  
-  <!-- =========================== 02 post ============================= -->
-  
-   <servlet>
-  	<servlet-name>postMethodTest2</servlet-name>
-  	<servlet-class>begin.chap02.PostMethodTest2</servlet-class>
-  </servlet>
-  
-   <servlet-mapping>
-  	<servlet-name>postMethodTest2</servlet-name>
-  	<url-pattern>/postMethodTest2.do</url-pattern>
-  </servlet-mapping>
-  
-  <!-- =========================== 03 get/post ============================= -->
-  
-  <servlet>
-  	<servlet-name>get_postMethodTest3</servlet-name>
-  	<servlet-class>begin.chap02.Get_postMethodTest3</servlet-class>
-  </servlet>
-  
-   <servlet-mapping>
-  	<servlet-name>get_postMethodTest3</servlet-name>
-  	<url-pattern>/get_postMethodTest3.do</url-pattern>
-  </servlet-mapping>
-  
   <!-- === 필터(Filter) 등록하기 === -->
-  
   <filter>
   	<filter-name>setCharacterEncoding</filter-name>
   	<filter-class>my.filter.MyFilter</filter-class>
@@ -63,13 +20,6 @@
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
-  <!-- === NumberFormatException 등록하기 === -->
-  
-  <error-page>
-  	<exception-type>java.lang.NumberFormatException</exception-type>
-  	<location>/01begin/chap05_exception/07error3.jsp</location>
-  </error-page>
-  
   <!-- ========= MyDBCP Setting Start  ===========  -->
   <resource-ref>
  	<description>Oracle Datasource example</description>
@@ -78,15 +28,4 @@
  	<res-auth>Container</res-auth>
   </resource-ref>
   <!-- ========= MyDBCP Setting End  ===========  -->
-  
 </web-app>
-
-
-
-
-
-
-
-
-
-
