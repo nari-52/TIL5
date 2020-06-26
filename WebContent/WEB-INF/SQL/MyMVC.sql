@@ -701,23 +701,14 @@
     values (seq_notice_post.nextval, '공지2', '공지 내용 2', default); 
     insert into notice_post (notice_seq, title, contents, write_day)
     values (seq_notice_post.nextval, '공지3', '공지 내용 3', default); 
-    insert into notice_post (notice_seq, post_no, title, contents, write_day)
---    values (seq_notice_post.nextval, 1, '공지4', '공지 내용 4', default); 
---    insert into notice_post (notice_seq, post_no, title, contents, write_day)
---    values (seq_notice_post.nextval, 1, '공지5', '공지 내용 5', default); 
---    insert into notice_post (notice_seq, post_no, title, contents, write_day)
---    values (seq_notice_post.nextval, 1, '공지6', '공지 내용 6', default); 
---    insert into notice_post (notice_seq, post_no, title, contents, write_day)
---    values (seq_notice_post.nextval, 1, '공지7', '공지 내용 7', default); 
---    insert into notice_post (notice_seq, post_no, title, contents, write_day)
---    values (seq_notice_post.nextval, 1, '공지8', '공지 내용 8', default); 
---    insert into notice_post (notice_seq, post_no, title, contents, write_day)
---    values (seq_notice_post.nextval, 1, '공지9', '공지 내용 9', default); 
---    insert into notice_post (notice_seq, post_no, title, contents, write_day)
---    values (seq_notice_post.nextval, 1, '공지10', '공지 내용 10', default); 
---    insert into notice_post (notice_seq, post_no, title, contents, write_day)
---    values (seq_notice_post.nextval, 1, '공지11', '공지 내용 11', default); 
-    
+
+    insert into notice_post (notice_seq, title, contents, write_day)
+    values (seq_notice_post.nextval, '페이징1', '페이징 내용1', default); 
+    insert into notice_post (notice_seq, title, contents, write_day)
+    values (seq_notice_post.nextval, '페이징2', '페이징 내용2', default); 
+    insert into notice_post (notice_seq, title, contents, write_day)
+    values (seq_notice_post.nextval, '페이징3', '페이징 내용3', default); 
+
     commit;
     
     select *
@@ -733,6 +724,34 @@
     from notice_post
     order by 1 desc;
     
+    select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+    from notice_post 
+    order by 1 desc;
+    
+   select rownum AS RNO, notice_seq, title, write_day , hit 
+   from  
+   ( 
+    select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+    from notice_post 
+    order by 1 asc
+   ) V;
+   
+ 
+ -- 공지사항 글번호 순차적으로 보이기 
+ select rno, notice_seq, title, write_day, hit
+ from  
+ ( 
+   select rownum AS RNO, notice_seq, title, write_day , hit 
+   from  
+   ( 
+    select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+    from notice_post 
+    order by 1 asc
+   ) V 
+  ) T 
+  order by T.rno desc;
+    
+    
     select title, contents, hit
     from notice_post
     where to_char(notice_seq) = '13';
@@ -746,6 +765,77 @@
     
     drop table store_location purge;
     drop sequence seq_store_location;
+    
+    ----- *** 페이징 처리하기 *** ------
+     select rno, notice_seq, title, write_day, hit
+     from  
+     ( 
+       select rownum AS RNO, notice_seq, title, write_day , hit 
+       from  
+       ( 
+        select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+        from notice_post 
+        order by 1 asc
+       ) V 
+      ) T 
+      where T.RNO between 11 and 20;
+      
+-----------------------
+
+select RNO, notice_seq, title, write_day, hit
+from  
+ ( 
+   select rownum AS RNO, notice_seq, title, write_day , hit 
+   from  
+   ( 
+    select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+    from notice_post 
+    order by notice_seq desc
+   ) V 
+ ) T 
+where T.RNO between (1*10)-(10-1) and (1*10);
+
+
+select (select count(*) from notice_post) - rowno + 1 AS RNO, notice_seq, title, write_day, hit
+from  
+ ( 
+   select rownum AS ROWNO, notice_seq, title, write_day , hit 
+   from  
+   ( 
+    select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+    from notice_post 
+    order by notice_seq desc
+   ) V 
+ ) T 
+where T.ROWNO between (1*10)-(10-1) and (1*10);
+
+
+
+-------------------------
+      
+      select rno, notice_seq, title, write_day, hit
+     from  
+     ( 
+       select rownum AS RNO, notice_seq, title, write_day , hit 
+       from  
+       ( 
+        select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+        from notice_post 
+        order by 1 asc
+       ) V 
+      ) T 
+      where T.RNO between 4 and 6;
+    
+    select count(*)
+    from notice_post; -- 행 개수 => 13개
+    
+    select ceil(count(*)/10) AS totalPage
+    from notice_post; -- 총 페이지수
+    
+    
+    
+    
+    
     
     -- 매장위치
     create table store_location
@@ -791,6 +881,41 @@
     
     
     commit;
+    
+    
+    
+    
+    -- 회원
+    create table starbucks_Member
+    (Member_seq         number(4)      not null       -- 시퀀스
+    ,userid             varchar2(20)   not null       -- 아이디
+    ,password           varchar2(200)  not null       -- 비밀번호 (SHA-256 암호화 대상)
+    ,name               varchar2(30)   not null       -- 이름
+    ,email              varchar2(200)  not null       -- 이메일   (AES-256 암호화/복호화 대상)
+    ,hp1                varchar2(3)                   -- 연락처
+    ,hp2                varchar2(200)                 --         
+    ,hp3                varchar2(200)                 --        
+    ,point              number default 0              -- 포인트 
+    ,gender             number(1)                     -- 성별     남자 : 1 / 여자 : 2
+    ,birthday           varchar2(15)                   -- 생일 
+    ,register_day       date default sysdate          -- 가입일
+    ,status             number(1) default 1           -- 탈퇴유무   1:사용가능(가입중) / 0:사용불능(탈퇴) 
+    ,constraint   UQ_starbucks_Member unique(userid)
+    ,constraint   CK_starbucks_Member_gender check( gender in('1','2') ) 
+    ,constraint   CK_starbucks_Member_status check( status in(0,1) ) 
+    );
+    
+    --시퀀스
+    create sequence seq_starbucks_Member
+    start with 1
+    increment by 1
+    nomaxvalue
+    nominvalue
+    nocycle
+    nocache;
+    
+    select *
+    from starbucks_Member;
     
     
     
