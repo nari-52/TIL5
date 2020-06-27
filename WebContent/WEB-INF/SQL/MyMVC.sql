@@ -795,6 +795,19 @@ from
  ) T 
 where T.RNO between (1*10)-(10-1) and (1*10);
 
+-- 페이징 처리하기 번호 순차적으로 보이기
+select (select count(*) from notice_post) - rowno + 1 AS RNO, notice_seq, title, write_day, hit
+from  
+ ( 
+   select rownum AS ROWNO, notice_seq, title, write_day , hit 
+   from  
+   ( 
+    select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+    from notice_post 
+    order by notice_seq desc
+   ) V 
+ ) T 
+where T.ROWNO between (1*10)-(10-1) and (1*10);
 
 select (select count(*) from notice_post) - rowno + 1 AS RNO, notice_seq, title, write_day, hit
 from  
@@ -804,6 +817,7 @@ from
    ( 
     select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
     from notice_post 
+    where title like '%' || '페이징' || '%'
     order by notice_seq desc
    ) V 
  ) T 
