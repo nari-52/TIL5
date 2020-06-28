@@ -31,7 +31,7 @@
 		/* border: solid 1px skyblue; */
 		height: 646px;
 		background-color: #f4e7c7;
-		background-image: url('images/section_new_product_background.jpg');
+		background-image: url('images/nari/section_new_product_background.jpg');
 		background-repeat : no-repeat; 
 		/* background-size : cover; */
 	}
@@ -57,7 +57,7 @@
 		left: 13vW; 
 		width: 255px; 
 		height: 269px; 
-		background-image: url('images/section_new_product_emblem.png'); 
+		background-image: url('images/nari/section_new_product_emblem.png'); 
 		background-repeat: no-repeat; 
 		background-size: 100%;
 
@@ -96,7 +96,7 @@
 	}
 
     div.section_new_product_limemojito {
-		background-image: url('images/section_new_product_limemojito.png');
+		background-image: url('images/nari/section_new_product_limemojito.png');
 		position: absolute;
 		/* 이미지 크기 지정해주는 곳 */
 		width: 30vw;
@@ -111,7 +111,7 @@
     }
     
     div.section_new_product_doubleexpresso {
-	    background-image: url('images/section_new_product_doubleexpresso.png');
+	    background-image: url('images/nari/section_new_product_doubleexpresso.png');
 	    position: absolute;
 		/* 이미지 크기 지정해주는 곳 */
 		width: 30vw;
@@ -126,7 +126,7 @@
     }
     
     div.section_new_product_applemango {
-	    background-image: url('images/section_new_product_applemango.png');
+	    background-image: url('images/nari/section_new_product_applemango.png');
 	    position: absolute;
 		/* 이미지 크기 지정해주는 곳 */
 		width: 29vw;
@@ -180,7 +180,7 @@
 		/* border: solid 1px orange; */
 		height: 335px;
 		background-color: white;
-		background-image: url('images/reward_texbg.jpg');
+		background-image: url('images/nari/reward_texbg.jpg');
 		padding: 0;
 		color : white;
 	}
@@ -256,7 +256,7 @@
 	div#section_recommended_menu {
 		/* border: solid 1px purple; */
 		height: 573px;
-		background-image: url('images/section_recommended_menu_back2.jpg');
+		background-image: url('images/nari/section_recommended_menu_back2.jpg');
  		background-size: 100% 100%; 
  		text-align: center;
 	}
@@ -279,7 +279,7 @@
 	/* 리저브매장 */
 	div#section_reserve {
 		height: 573px;
-		background-image: url('images/section_reserve_back.jpg');
+		background-image: url('images/nari/section_reserve_back.jpg');
 		background-size: 100vw 40vw;
 	}
 	
@@ -310,11 +310,11 @@
 				<div id="section_new_product_slogan">
 					<div class="section_new_product_emblem back_size_eb"></div> 
 					
-					<button class="section_new_product_more" onclick="alert('자세히보기')" >자세히보기</button>
+					<button class="section_new_product_more" onclick="location.href='notice/noticeList.sb'" >자세히보기</button>
 				</div>
-				<div class="section_new_product_limemojito back_size_lm" style="cursor: pointer;" onclick="window.location.href='notice_list.html'"></div>
-				<div class="section_new_product_doubleexpresso back_size_de" style="cursor: pointer;" onclick="window.location.href='notice_list.html'"></div>
-				<div class="section_new_product_applemango back_size_am" style="cursor: pointer;" onclick="window.location.href='notice_list.html'"></div>
+				<div class="section_new_product_limemojito back_size_lm" style="cursor: pointer;" onclick="location.href='notice/noticeList.sb'"></div>
+				<div class="section_new_product_doubleexpresso back_size_de" style="cursor: pointer;" onclick="location.href='notice/noticeList.sb'"></div>
+				<div class="section_new_product_applemango back_size_am" style="cursor: pointer;" onclick="location.href='notice/noticeList.sb'"></div>
 			</div>
 			
 			<div id="section_notice">
@@ -322,29 +322,29 @@
 					<tr>
 						<td id="section_notice_title">공지사항 </td>
 						<td><a>SSG PAY 시스템 점검 안내</a></td>
-						<td><a href="notice_list.html"><img id="section_notice_plus" src="images/notice_plus.png" width="30px" height="30px" /></a></td>
+						<td><a href="http://localhost:9090/StarbucksWeb/notice/noticeList.sb"><img id="section_notice_plus" src="images/nari/notice_plus.png" width="30px" height="30px" /></a></td>
 					</tr>
 				</table>
 			</div>
 			
 			<section>
 			<div id="section_reward">
-				<img id="section_reward_mystarbucks" src="images/section_reward_mystarbucks.png" width="35%" height="335px"/>
-				<img id="section_reward_mystarbucks_logo" src="images/section_reward_mystarbucks_logo.png" />
-				<img id="section_reward_txt1" src="images/section_reward_txt1.png" />
-				<img id="section_reward_txt2" src="images/section_reward_txt2.png" />
+				<img id="section_reward_mystarbucks" src="images/nari/section_reward_mystarbucks.png" width="35%" height="335px"/>
+				<img id="section_reward_mystarbucks_logo" src="images/nari/section_reward_mystarbucks_logo.png" />
+				<img id="section_reward_txt1" src="images/nari/section_reward_txt1.png" />
+				<img id="section_reward_txt2" src="images/nari/section_reward_txt2.png" />
 				<div id="reward_button">
-					<button class="reward_button reward_btn_signup" type="button" onclick="window.location.href='notice_list.html'">회원가입</button>
-					<button class="reward_button reward_btn_login" type="button" onclick="window.location.href='notice_list.html'">로그인</button>
+					<button class="reward_button reward_btn_signup" type="button" onclick="location.href='register/memberRegister.sb'" >회원가입</button>
+					<button class="reward_button reward_btn_login" type="button" onclick="location.href='login/loginIndex.sb'" >로그인</button>
 					<br/>
-					<button class="reward_button reward_btn_product" type="button" onclick="window.location.href='notice_list.html'">더 많은 상품보기</button>
+					<button class="reward_button reward_btn_product" type="button" onclick="location.href='product/menu.sb'" >더 많은 상품보기</button>
 				</div>	
 			</div>
 			</section>
 			
 			<div id="section_recommended_menu">
-				<img id="section_recommended_text" src="images/section_recommended_text1.png" />
-				<img id="section_recommended_menu_1" src="images/section_recommended_menu_1.jpg" width="500px" height="500px" style="cursor: pointer;" onclick="window.location.href='notice_list.html'"/>
+				<img id="section_recommended_text" src="images/nari/section_recommended_text1.png" />
+				<img id="section_recommended_menu_1" src="images/nari/section_recommended_menu_1.jpg" width="500px" height="500px" style="cursor: pointer;" onclick="location.href='product/menu.sb'"/>
 			</div>
 			
 			<div id="section_reserve">
@@ -360,4 +360,3 @@
 		<!-- --------------------------------- 바디 끝 ---------------------------------- -->
 		
 <jsp:include page="footer.jsp" />
-		
