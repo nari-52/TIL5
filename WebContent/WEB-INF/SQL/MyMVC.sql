@@ -676,7 +676,7 @@
     , title             varchar2(100)   not null    -- 글제목
     , contents          varchar2(4000)  not null    -- 글내용
     , write_day         date default sysdate        -- 작성일
-    , hit               Number(4) defatul 0         -- 조회수
+    , hit               Number(4) default 0         -- 조회수
     , constraint PK_notice_post_notice_seq primary key(notice_seq)
     );
     
@@ -851,14 +851,19 @@ where T.ROWNO between (1*10)-(10-1) and (1*10);
     
     
     
+    drop table store_location purge;
+    drop sequence seq_store_location;
+    
     -- 매장위치
     create table store_location
     ( store_id          varchar2(30)   not null     -- 매장아이디
     , store_sequence    number(4)   not null        -- 매장시퀀스
-    , store_name        varchar2(30)   not null     -- 매장명
+    , store_name        varchar2(50)   not null     -- 매장명
     , address           varchar2(200)  not null     -- 주소
-    , latitude          number  not null        -- 위도
-    , longitude         number  not null        -- 경도
+    , url               varchar2(200)   not null    -- 매장 홈페이지 url
+    , latitude          number  not null            -- 위도
+    , longitude         number  not null            -- 경도
+    , zindex            number(4)   not null        -- zindex
     , constraint PK_store_location_sid primary key(store_id)
     );
     
@@ -874,27 +879,30 @@ where T.ROWNO between (1*10)-(10-1) and (1*10);
     select *
     from store_location;
     
-    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
-    values (1, seq_store_location.nextval, '을지로삼화타워점', '서울특별시 중구 수하동 을지로5길 16', 37.566996, 126.984612);
+    insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
+    values (1, seq_store_location.nextval, '스타벅스 을지로삼화타워점', '서울특별시 중구 수하동 을지로5길 16', 'https://place.map.kakao.com/17884783', 37.566996, 126.984612, seq_store_location.nextval);
     
-    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
-    values (2, seq_store_location.nextval, '종로관철점', '서울특별시 종로구 관철동 종로12길 21', 37.569023, 126.986006);
+    insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
+    values (2, seq_store_location.nextval, '스타벅스 종로관철점', '서울특별시 종로구 관철동 종로12길 21', 'https://place.map.kakao.com/12700362', 37.569023, 126.986006, seq_store_location.nextval);
     
-    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
-    values (3, seq_store_location.nextval, '종각점', '서울특별시 종로구 종로2가 종로 64', 37.569993, 126.984534);
+    insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
+    values (3, seq_store_location.nextval, '스타벅스 종각점', '서울특별시 종로구 종로2가 종로 64', 'https://place.map.kakao.com/8405079', 37.569993, 126.984534, seq_store_location.nextval);
+   
     
+    insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
+    values (4, seq_store_location.nextval, '스타벅스 을지로한국빌딩점', '서울특별시 중구 명동 을지로 50', 'https://place.map.kakao.com/27090421', 37.565690, 126.983299, seq_store_location.nextval);
     
-    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
-    values (4, seq_store_location.nextval, '을지로한국빌딩점', '서울특별시 중구 명동 을지로 50', 37.565690, 126.983299);
+    insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
+    values (5, seq_store_location.nextval, '스타벅스 환구단점', '서울특별시 중구 소공동', 'https://place.map.kakao.com/22894118', 37.564907, 126.979189, seq_store_location.nextval);
     
-    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
-    values (5, seq_store_location.nextval, '소공동점', '서울특별시 중구 소공동', 37.564907, 126.979189);
-    
-    insert into store_location (store_id, store_sequence, store_name, address, latitude, longitude)
-    values (6, seq_store_location.nextval, '남산단암점', '서울특별시 중구 회현동 소월로 10', 37.558648, 126.975294);
+    insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
+    values (6, seq_store_location.nextval, '스타벅스 남산단암점', '서울특별시 중구 회현동 소월로 10', 'https://place.map.kakao.com/12108441', 37.558648, 126.975294, seq_store_location.nextval);
     
     
     commit;
+    
+    
+    
     
     
     

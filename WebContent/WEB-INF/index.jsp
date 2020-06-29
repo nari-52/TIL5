@@ -353,6 +353,7 @@
 			
 			<div id="section_map">
 			지도
+				<div id="map" style="width:90%; height:450px; border: solid 1px red;"></div>
 			</div>
 		
 		</section>
