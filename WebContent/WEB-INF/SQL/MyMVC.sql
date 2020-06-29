@@ -850,7 +850,7 @@ where T.ROWNO between (1*10)-(10-1) and (1*10);
     
     
     
-    
+    -- 매장위치 테이블 시퀀스 삭제
     drop table store_location purge;
     drop sequence seq_store_location;
     
@@ -879,27 +879,27 @@ where T.ROWNO between (1*10)-(10-1) and (1*10);
     select *
     from store_location;
     
+    -- 매장위치 데이터 삽입
     insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
     values (1, seq_store_location.nextval, '스타벅스 을지로삼화타워점', '서울특별시 중구 수하동 을지로5길 16', 'https://place.map.kakao.com/17884783', 37.566996, 126.984612, seq_store_location.nextval);
-    
     insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
     values (2, seq_store_location.nextval, '스타벅스 종로관철점', '서울특별시 종로구 관철동 종로12길 21', 'https://place.map.kakao.com/12700362', 37.569023, 126.986006, seq_store_location.nextval);
-    
     insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
     values (3, seq_store_location.nextval, '스타벅스 종각점', '서울특별시 종로구 종로2가 종로 64', 'https://place.map.kakao.com/8405079', 37.569993, 126.984534, seq_store_location.nextval);
-   
-    
     insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
     values (4, seq_store_location.nextval, '스타벅스 을지로한국빌딩점', '서울특별시 중구 명동 을지로 50', 'https://place.map.kakao.com/27090421', 37.565690, 126.983299, seq_store_location.nextval);
-    
     insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
     values (5, seq_store_location.nextval, '스타벅스 환구단점', '서울특별시 중구 소공동', 'https://place.map.kakao.com/22894118', 37.564907, 126.979189, seq_store_location.nextval);
-    
     insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
     values (6, seq_store_location.nextval, '스타벅스 남산단암점', '서울특별시 중구 회현동 소월로 10', 'https://place.map.kakao.com/12108441', 37.558648, 126.975294, seq_store_location.nextval);
     
-    
     commit;
+    
+    select store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
+    from store_location
+    order by zindex asc;
+
+
     
     
     
