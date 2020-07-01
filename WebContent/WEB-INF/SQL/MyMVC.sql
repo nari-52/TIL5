@@ -712,7 +712,11 @@
     commit;
     
     select *
-    from notice_post;
+    from notice_post
+    order by 1 desc;
+    
+    delete from notice_post
+    where notice_seq = 24;
     
   --  update notice_post set hit = 0;
   --  commit;
@@ -731,10 +735,68 @@
    select rownum AS RNO, notice_seq, title, write_day , hit 
    from  
    ( 
-    select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+    select notice_seq, notice_seq, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
     from notice_post 
     order by 1 asc
    ) V;
+   
+   
+   -- 공지사항 글 위 아래 글제목 가져오기
+ select rno, notice_seq, title, contents, write_day, hit
+  from 
+  (
+        select rno, notice_seq, title, contents, write_day, hit
+     from  
+     ( 
+       select rownum AS RNO, notice_seq, contents, title, write_day , hit 
+       from  
+       ( 
+        select notice_seq, title, contents, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+        from notice_post 
+        order by 1 asc
+       ) V 
+      ) T 
+      order by T.rno desc
+  ) p
+  where P.rno = '21'
+  
+String sql = "   select rno, notice_seq, title, write_day, hit\n"+
+"  from \n"+
+"  (\n"+
+"        select rno, notice_seq, title, write_day, hit\n"+
+"     from  \n"+
+"     ( \n"+
+"       select rownum AS RNO, notice_seq, title, write_day , hit \n"+
+"       from  \n"+
+"       ( \n"+
+"        select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit \n"+
+"        from notice_post \n"+
+"        order by 1 asc\n"+
+"       ) V \n"+
+"      ) T \n"+
+"      order by T.rno desc\n"+
+"  ) p\n"+
+"  where P.rno = '21'";
+   
+   
+  select title
+  from 
+  (
+        select rno, notice_seq, title, write_day, hit
+     from  
+     ( 
+       select rownum AS RNO, notice_seq, title, write_day , hit 
+       from  
+       ( 
+        select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
+        from notice_post 
+        order by 1 asc
+       ) V 
+      ) T 
+      order by T.rno desc
+  ) p
+  where P.rno = '21'
+  
    
  
  -- 공지사항 글번호 순차적으로 보이기 

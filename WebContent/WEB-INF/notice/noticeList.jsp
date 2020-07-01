@@ -173,7 +173,7 @@
 			var notice_seq = $(this).prev().text();
 			
 		//	alert(notice_seq);
-            location.href="noticeView.sb?notice_seq="+notice_seq;    		
+            ="noticeView.sb?notice_seq="+notice_seq;    		
 		});
 		
 	}); // end of $(document).ready(function()-----------------------------
@@ -243,6 +243,7 @@
 			</table>
 			</form>
 			</br></br>
+			${totalPage}
 			<div id="pageBar">
 				${pageBar}
 			</div>
