@@ -40,7 +40,7 @@ public class NoticeListAction extends AbstractController {
 
 		// 검색어를 가져온다.
 		String searchWord = request.getParameter("searchWord");
-		System.out.println("~~~ searchWord : " + searchWord);
+		// System.out.println("~~~ searchWord : " + searchWord);
 		
 		if ( searchWord != null && !searchWord.trim().isEmpty() ) {
 			paraMap.put("searchWord", searchWord);

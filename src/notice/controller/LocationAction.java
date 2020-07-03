@@ -53,10 +53,11 @@ public class LocationAction extends AbstractController {
 		} 
 		
 		String json = jsonArr.toString(); // 문자열로 바꿔준다.
+		
 		request.setAttribute("json", json);
 		
 		super.setRedirect(false);
-		super.setViewPage("/WEB-INF/location.jsp");
+		super.setViewPage("/WEB-INF/jsonview.jsp");
 
 		
 	}

@@ -3,7 +3,7 @@
 
 <script type="text/javascript">
 	alert("${message}");
-	="${loc}"; // 페이지이동
+	location.href="${loc}"; // 페이지이동
 
 	self.close(); // 팝업창 닫기
 	opener.location.reload(true); // 부모창 새로고침
