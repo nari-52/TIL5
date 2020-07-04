@@ -905,6 +905,7 @@ from
  ) T 
 where T.ROWNO between (1*10)-(10-1) and (1*10);
 
+
 select (select count(*) from notice_post) - rowno + 1 AS RNO, notice_seq, title, write_day, hit
 from  
  ( 
@@ -913,7 +914,7 @@ from
    ( 
     select notice_seq, title, to_char(write_day,'yyyy-mm-dd') AS write_day , hit 
     from notice_post 
-    where title like '%' || '페이징' || '%'
+    where title like '%' || '앱' || '%'
     order by notice_seq desc
    ) V 
  ) T 
@@ -1018,13 +1019,43 @@ where T.ROWNO between (1*10)-(10-1) and (1*10);
     insert into store_location (store_id, store_sequence, store_name, address, url, latitude, longitude, zindex)
     values (18, seq_store_location.nextval, '스타벅스 김포시청점', '경기 김포시 사우중로 35', 'https://place.map.kakao.com/24165747', 37.618455, 126.717842, seq_store_location.nextval);
     
-    
+    --- 매장 관리자페이지 --
     select store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
     from store_location
     order by zindex asc;
-
-
     
+    
+select RNO, store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
+from    
+(
+    select rownum AS RNO, store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
+    from 
+    (
+    select store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
+    from store_location
+    order by zindex asc
+    ) V
+) T
+where T.RNO between 1 and 10; 
+
+select RNO, store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
+from    
+(
+    select rownum AS RNO, store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
+    from 
+    (
+    select store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
+    from store_location
+    order by zindex asc
+    ) V
+) T
+where T.RNO between 11 and 20; 
+
+
+-- 매장 관리자페이지 페이징
+
+select ceil(count(*)/10) AS totalPage 
+from store_location
     
     
     
@@ -2073,6 +2104,35 @@ select  lag(first_name || ' ' || last_name) over(order by salary desc)    -- 앞
 
 
 -- 윗글 아랫글 글번호 보여주기     
+
+select  lag(notice_seq) over(order by notice_seq desc) AS POSTNUM    -- 앞에 행의 글번호를 보여주자
+      , nvl( (lag(title) over(order by notice_seq desc)),'글이 없습니다.' )AS POSTTITLE      -- 앞에 행의 글제목을 보여주자
+      , notice_seq  -- 현재 글번호
+      , title       -- 현재 글제목
+      , contents    -- 현재 글내용
+      , lead(notice_seq) over(order by notice_seq desc) AS PRENUM   -- 뒤에 행의 글번호를 보여주자
+      , nvl( (lead(title) over(order by notice_seq desc)),'글이 없습니다.' )AS PRETITLE        -- 뒤의 행에 글제목 보여주자
+from notice_post;
+
+
+-- 윗글 아랫글 불러오기 최종
+select POSTNUM, POSTTITLE, notice_seq, title, contents, PRENUM, PRETITLE
+from 
+(
+    select  lag(notice_seq) over(order by notice_seq desc) AS POSTNUM    -- 앞에 행의 글번호를 보여주자
+          , nvl( (lag(title) over(order by notice_seq desc)),'글이 없습니다.' )AS POSTTITLE      -- 앞에 행의 글제목을 보여주자
+          , notice_seq  -- 현재 글번호
+          , title       -- 현재 글제목
+          , contents    -- 현재 글내용
+          , lead(notice_seq) over(order by notice_seq desc) AS PRENUM   -- 뒤에 행의 글번호를 보여주자
+          , nvl( (lead(title) over(order by notice_seq desc)),'글이 없습니다.' )AS PRETITLE        -- 뒤의 행에 글제목 보여주자
+    from notice_post
+) V
+where notice_seq = 1;
+
+
+
+
 
 select  lag(notice_seq) over(order by notice_seq desc) AS POSTNUM    -- 앞에 행의 글번호를 보여주자
       , nvl( (lag(title) over(order by notice_seq desc)),'글이 없습니다.' )AS POSTTITLE      -- 앞에 행의 글제목을 보여주자
