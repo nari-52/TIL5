@@ -3233,6 +3233,18 @@ from purchase_detail
             , A.readcount AS 조회수
     from tbl_board A inner join tbl_member B 
     on A.fk_userid = B.userid;
+    
+    -- join 해보기
+    
+    select A.store_id, A.store_sequence, A.store_name, A.address, A.url, A.latitude, A.longitude, A.zindex, sum(B.price)
+    from
+    (
+    select A.store_id, A.store_sequence, A.store_name, A.address, A.url, A.latitude, A.longitude, A.zindex, B.price
+    from store_location A inner join purchase_detail B
+    on A.store_id = B.store_id
+    )V
+    
+    order by zindex asc
 
 select RNO, store_id, store_sequence, store_name, address, url, latitude, longitude, zindex
 from    
@@ -3249,7 +3261,17 @@ where T.RNO between 11 and 20;
 
 
 select sum(price) 
+select *
 from purchase_detail
+
+update starbucks_member set point = '5000'
+where userid='nari'
+commit;
+
+insert into custom_price (name, price) values('size', 500);
+
+commit;
+
 
 
 
