@@ -79,9 +79,6 @@ public class StoreManagementAction extends AbstractController {
 			svo.setIncome(income);
 		}
 		
-//		List<StoreVO> incomeList = storeDAO.selectIncomeByStore(sMap);
-		
-		
 		request.setAttribute("storeList", storeList);
 		request.setAttribute("sizePerPage", sizePerPage);
 		
