@@ -81,7 +81,6 @@
 	    line-height: 38px;
 	}
 		
-	
 	/* ---------------------------- 헤더 끝 -------------------------- */
 	
 	table {
@@ -186,11 +185,7 @@
 		frm.method = "GET";
 		frm.action = "noticeList.sb";
 		frm.submit();
-	}
-	
-	
-			
-			
+	}		
 			
 </script>
 
@@ -254,11 +249,8 @@
 					<a class="write notice_list" href="noticeWrite.sb" >글쓰기</a>
 				</p>
 			</div>
-		</section>
-		
-		
+		</section>	
 		
 	</div>
-
 
 <jsp:include page="../footer.jsp" />
