@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	
+	div#login_container {
+		border: solid 1px gray;
+		max-width: 1080px;
+		height: 100px;
+		margin: 0 auto;
+	}
+	
+	h1#head_main {
+		color: #00bcd4; /* 메인컬러  */
+		margin: 0 auto;
+		text-align: center;
+		width: 100%;
+		height: 129px;
+		font-size: 25pt;
+	}
+	
+	/* 로그인 만들기 */
+	section#login_section {
+		border: solid 1px gray;
+		max-width: 1080px;
+		height: 600px;
+	}
+	
+	form#loginFrm {
+		border: solid 1px red;
+		margin: 0 auto;
+		width: 620px;
+		height: 320px;
+	}
+
+	div#loginbtn{
+		border: solid 1px blue;
+		margin: 0 auto;
+		width: 620px;
+		height: 30px;
+		background-color: #00bcd4;
+		color: white;
+		font-weight: bold;
+		text-align: center;
+		padding-top: 10px;
+	}
+
+
+</style>
+<script type="text/javascript">
+
+</script>
+
+</head>
+<body>
+
+	<div id="login_container">
+		<section>
+			<div id="login_head">
+				<h1 id="head_main">로그인</h1>
+			</div>
+		</section>
+		
+		<section id="login_section">
+			<form name="loginFrm" id="loginFrm">
+				<div id="login">
+					<h3>ECLASS 회원 로그인</h3>
+					<ul>
+						<li>
+							<label for="userid"></label>
+							<input type="text" name="userid" id="userid" required autofocus placeholder="아이디를 입력해주세요."/>
+						</li>
+						<li>
+							<label for="pwd"></label>
+							<input type="password" name="pwd" id="pwd" required placeholder="비밀번호를 입력해주세요."/>
+						</li>
+						<li>
+							<input type="checkbox" name="saveID" id="saveID" required placeholder="비밀번호를 입력해주세요."/>
+							<label for="saveID">아이디 저장</label>
+						</li>
+						
+					</ul>
+					<div id="loginbtn">로그인</div>
+					<div class="login_footer">
+						<span>아이디찾기</span>
+						<span>비밀번호 찾기</span>
+						<span>학생 회원가입</span>
+						<span>교수 회원가입</span>
+					</div>
+					
+				
+				</div>
+			</form>
+		</section>
+	</div>
+
+</body>
+</html>

@@ -3273,6 +3273,32 @@ insert into custom_price (name, price) values('size', 500);
 commit;
 
 
+-------------------------------------------------------- final proj
+
+
+   create table eclass_member
+    ( userid                    varchar2(50)   not null     -- 아이디
+    , name                      varchar2(30)   not null     -- 성명
+    , pwd                       varchar2(200)   not null    -- 비밀번호 (SHA-256 암호화 대상)
+    , identity                  number(1) default 1         -- 회원 구분 (학생 1, 교수 2, 관리자 3)
+    , university                varchar2(200)   not null    -- 대학명
+    , major                     varchar2(200)   not null    -- 학과명
+    , student_num               varchar2(200)               -- 학번 (학생만 not null)
+    , email                     varchar2(200)   not null    -- 이메일 (AES-256 암호화/복호화 대상)
+    , mobile                    varchar2(3)     not null    -- 핸드폰
+    , postcode                  varchar2(5)                 -- 우편번호
+    , address                   varchar2(200)               -- 주소
+    , detailaddress             varchar2(200)               -- 상세주소
+    , extraaddress              varchar2(200)               -- 참고항목
+    , point                     number default 0            -- 포인트 
+    , registerday               date default sysdate        -- 가입일자
+    , status                    number(1) default 1         -- 회원상태   1:사용가능(가입중) / 0:사용불능(탈퇴) 
+    , last_login_date           date default sysdate        -- 마지막 로그인 날짜
+    , pwd_change_date           varchar2(255)               -- 파일이름(WAS 저장용)
+    , orgfilename               varchar2(255)               -- 파일이름 (진짜이름)
+    , constraint PK_eclass_member_userid primary key userid
+    , constraint CK_eclass_member_status check(status in(0,1))
+    );
 
 
 
