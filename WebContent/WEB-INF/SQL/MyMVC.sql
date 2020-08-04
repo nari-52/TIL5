@@ -3274,18 +3274,19 @@ commit;
 
 
 -------------------------------------------------------- final proj
+    drop table eclass_member purge;
 
-
+    -- 회원정보 테이블
    create table eclass_member
     ( userid                    varchar2(50)   not null     -- 아이디
     , name                      varchar2(30)   not null     -- 성명
     , pwd                       varchar2(200)   not null    -- 비밀번호 (SHA-256 암호화 대상)
     , identity                  number(1) default 1         -- 회원 구분 (학생 1, 교수 2, 관리자 3)
-    , university                varchar2(200)   not null    -- 대학명
-    , major                     varchar2(200)   not null    -- 학과명
-    , student_num               varchar2(200)               -- 학번 (학생만 not null)
-    , email                     varchar2(200)   not null    -- 이메일 (AES-256 암호화/복호화 대상)
-    , mobile                    varchar2(3)     not null    -- 핸드폰
+    , university                varchar2(100)   not null    -- 대학명
+    , major                     varchar2(100)   not null    -- 학과명
+    , student_num               varchar2(100)               -- 학번 (학생만 not null)
+    , email                     varchar2(300)   not null    -- 이메일 (AES-256 암호화/복호화 대상)
+    , mobile                    varchar2(200)     not null    -- 핸드폰
     , postcode                  varchar2(5)                 -- 우편번호
     , address                   varchar2(200)               -- 주소
     , detailaddress             varchar2(200)               -- 상세주소
@@ -3296,10 +3297,23 @@ commit;
     , last_login_date           date default sysdate        -- 마지막 로그인 날짜
     , pwd_change_date           varchar2(255)               -- 파일이름(WAS 저장용)
     , orgfilename               varchar2(255)               -- 파일이름 (진짜이름)
-    , constraint PK_eclass_member_userid primary key userid
+    , constraint PK_eclass_member_userid primary key (userid)
     , constraint CK_eclass_member_status check(status in(0,1))
     );
 
+    select *
+    from eclass_member;
+    
+    -- 로그인 테이블
+    create table login_table
+    ( fk_userid                 varchar2(50)   not null     -- 아이디
+    , name                      varchar2(30)   not null     -- 성명 
+    , constraint FK_login_table_fk_userid foreign key (fk_userid)
+                                          references eclass_member (userid)
+    );
+    
+    select *
+    from login_table;
 
 
 
